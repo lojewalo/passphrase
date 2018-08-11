@@ -2,6 +2,9 @@
 
 *Generate passphrases using [EFF's word lists][eff].*
 
+Pretty much everything is customisable, but the default output looks like this:
+`countable.reference.glorified.varnish.porthole.scoreless`.
+
 What else is there to say?
 
     passphrase 0.1.0
