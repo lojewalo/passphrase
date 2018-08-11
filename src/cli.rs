@@ -44,4 +44,9 @@ pub fn app(lists: &'b [WordList]) -> App<'a, 'b> {
     .arg(Arg::with_name("verbose")
       .long("verbose")
       .help("turn on verbose mode"))
+    .arg(Arg::with_name("lists")
+      .short("L")
+      .long("lists")
+      .help("print available lists and their information then exit")
+      .conflicts_with_all(&["separator", "amount", "words", "list", "passphrases"]))
 }

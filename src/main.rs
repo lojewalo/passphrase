@@ -32,6 +32,10 @@ fn word_list(name: &str) -> Option<&WordList> {
 fn main() -> ExitCode {
   let args = crate::cli::app(&*WORD_LISTS).get_matches();
 
+  if args.is_present("lists") {
+    return lists();
+  }
+
   let list_name = args.value_of("list").expect("list value missing");
   let separator = args.value_of("separator").expect("separator value missing");
   let num_words: u8 = match args.value_of("words").expect("words value missing").parse() {
@@ -69,6 +73,21 @@ fn main() -> ExitCode {
       print!("{}", passphrase);
     } else {
       println!("{}", passphrase);
+    }
+  }
+
+  ExitCode::SUCCESS
+}
+
+fn lists() -> ExitCode {
+  for (i, list) in WORD_LISTS.iter().enumerate() {
+    println!("Name: {}", list.name);
+    println!("Description: {}", list.description);
+    println!("Short names: {}", list.short_names.join(", "));
+    println!("Length: {}", list.list.len());
+
+    if i < WORD_LISTS.len() - 1 {
+      println!();
     }
   }
 
