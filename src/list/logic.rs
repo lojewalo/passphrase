@@ -2,7 +2,7 @@ use super::WordList;
 
 use rand::Rng;
 
-impl WordList<'a> {
+impl WordList {
   pub fn get(&self, n: u32) -> &str {
     self.list[&n].as_str()
   }

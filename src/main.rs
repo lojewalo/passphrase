@@ -13,18 +13,20 @@ use lazy_static::lazy_static;
 
 use rand::thread_rng;
 
+use xz2::read::XzDecoder;
+
 use std::process::ExitCode;
 
-const WORD_LIST_JSON: &str = include_str!(concat!(env!("OUT_DIR"), "/json"));
+const WORD_LIST_JSON: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/json"));
 
 lazy_static! {
-  static ref WORD_LISTS: Vec<WordList<'static>> = {
-    serde_json::from_str(WORD_LIST_JSON).expect("invalid internal json")
+  static ref WORD_LISTS: Vec<WordList> = {
+    serde_json::from_reader(XzDecoder::new(WORD_LIST_JSON)).expect("invalid internal json")
   };
 }
 
 fn word_list(name: &str) -> Option<&WordList> {
-  WORD_LISTS.iter().find(|x| x.short_names.contains(&name))
+  WORD_LISTS.iter().find(|x| x.short_names.contains(&name.to_string()))
 }
 
 fn main() -> ExitCode {
