@@ -1,0 +1,22 @@
+{
+  "lists": [
+    {
+      "name": "EFF's Long Wordlist",
+      "short_names": ["long"],
+      "file": "long-wordlist.txt",
+      "rolls": 5
+    },
+    {
+      "name": "EFF's Short Wordlist #1",
+      "short_names": ["short1"],
+      "file": "short-wordlist-1.txt",
+      "rolls": 4
+    },
+    {
+      "name": "EFF's Short Wordlist #2",
+      "short_names": ["short2"],
+      "file": "short-wordlist-2.txt",
+      "rolls": 4
+    }
+  ]
+}
