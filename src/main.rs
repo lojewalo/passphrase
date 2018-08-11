@@ -38,7 +38,7 @@ fn main() {
       return;
     },
   };
-  let num_pws: u8 = match args.value_of("passphrases").expect("passphrases value missing").parse() {
+  let num_pws: usize = match args.value_of("passphrases").expect("passphrases value missing").parse() {
     Ok(x) => x,
     Err(e) => {
       eprintln!("invalid amount of passphrases: {}", e);
