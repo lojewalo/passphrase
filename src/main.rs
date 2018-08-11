@@ -1,6 +1,5 @@
-#![feature(process_exitcode_placeholder)]
+#![feature(rust_2018_preview, process_exitcode_placeholder, use_extern_macros)]
 
-#[macro_use] extern crate lazy_static;
 #[macro_use] extern crate log;
 #[macro_use] extern crate serde_derive;
 
@@ -10,11 +9,13 @@ mod logging;
 
 use crate::list::WordList;
 
+use lazy_static::lazy_static;
+
 use rand::thread_rng;
 
 use std::process::ExitCode;
 
-const WORD_LIST_JSON: &'static str = include_str!(concat!(env!("OUT_DIR"), "/json"));
+const WORD_LIST_JSON: &str = include_str!(concat!(env!("OUT_DIR"), "/json"));
 
 lazy_static! {
   static ref WORD_LISTS: Vec<WordList<'static>> = {

@@ -1,6 +1,6 @@
 use crate::list::model::WordList;
 
-use clap::{App, Arg};
+use clap::{App, Arg, crate_name, crate_version, crate_authors};
 
 pub fn app(lists: &[WordList<'b>]) -> App<'a, 'b> {
   let names: Vec<&str> = lists.iter()
@@ -8,9 +8,9 @@ pub fn app(lists: &[WordList<'b>]) -> App<'a, 'b> {
     .map(|x| *x)
     .collect();
 
-  App::new("passphrase")
-    .version("1.0.0")
-    .author("Kyle Clemens <passphrase@kyleclemens.com>")
+  App::new(crate_name!())
+    .version(crate_version!())
+    .author(crate_authors!())
     .about("Generates passphrases using dice rolls on word lists a la https://www.eff.org/dice.")
     .after_help("Please see https://www.eff.org/dice to learn about the word lists embedded in this program.")
     .version_short("v")
