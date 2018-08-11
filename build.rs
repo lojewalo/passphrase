@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate serde_derive;
 
+use serde::Serialize;
+
 use xz2::write::XzEncoder;
 
 use std::{
@@ -64,11 +66,11 @@ fn main() {
   }
 
   // create the file that will be included in the actual program
-  let json_path = Path::new(&std::env::var("OUT_DIR").unwrap()).join("json");
-  let json_file = File::create(&json_path).unwrap();
+  let bytes_path = Path::new(&std::env::var("OUT_DIR").unwrap()).join("bytes");
+  let bytes_file = File::create(&bytes_path).unwrap();
 
-  // write out the json
-  serde_json::to_writer(XzEncoder::new(json_file, 9), &lists).unwrap();
+  // write out the data
+  lists.serialize(&mut rmp_serde::encode::Serializer::new(XzEncoder::new(bytes_file, 9))).unwrap();
 }
 
 fn parse(content: &str) -> HashMap<u32, String> {
