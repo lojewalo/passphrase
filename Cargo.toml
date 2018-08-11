@@ -2,7 +2,7 @@ cargo-features = ["edition"]
 
 [package]
 name = "passphrase"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Kyle Clemens <git@kyleclemens.com>"]
 
 build = "build.rs"

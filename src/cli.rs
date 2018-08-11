@@ -9,7 +9,7 @@ pub fn app(lists: &[WordList<'b>]) -> App<'a, 'b> {
     .collect();
 
   App::new("passphrase")
-    .version("0.1.0")
+    .version("1.0.0")
     .author("Kyle Clemens <passphrase@kyleclemens.com>")
     .about("Generates passphrases using dice rolls on word lists a la https://www.eff.org/dice.")
     .after_help("Please see https://www.eff.org/dice to learn about the word lists embedded in this program.")
