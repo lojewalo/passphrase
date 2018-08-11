@@ -17,11 +17,11 @@ use xz2::read::XzDecoder;
 
 use std::process::ExitCode;
 
-const WORD_LIST_JSON: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/json"));
+const WORD_LIST_BYTES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/bytes"));
 
 lazy_static! {
   static ref WORD_LISTS: Vec<WordList> = {
-    serde_json::from_reader(XzDecoder::new(WORD_LIST_JSON)).expect("invalid internal json")
+    rmp_serde::decode::from_read(XzDecoder::new(WORD_LIST_BYTES)).expect("invalid internal serialization")
   };
 }
 
