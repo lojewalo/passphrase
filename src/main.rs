@@ -15,7 +15,7 @@ use rand::thread_rng;
 
 use xz2::read::XzDecoder;
 
-use std::process::ExitCode;
+use std::{io::Write, process::ExitCode};
 
 const WORD_LIST_BYTES: &[u8] = include_bytes!(concat!(env!("OUT_DIR"), "/bytes"));
 
@@ -66,13 +66,16 @@ fn main() -> ExitCode {
 
   let isnt_tty = atty::isnt(atty::Stream::Stdout);
 
+  let stdout = std::io::stdout();
+  let mut lock = stdout.lock();
+
   for i in 0..num_pws {
     let passphrase = list.generate(&mut rng, num_words, separator);
 
     if isnt_tty && i == num_pws - 1 {
-      print!("{}", passphrase);
+      lock.write_all(passphrase.as_bytes()).unwrap();
     } else {
-      println!("{}", passphrase);
+      lock.write_fmt(format_args!("{}\n", passphrase)).unwrap();
     }
   }
 
