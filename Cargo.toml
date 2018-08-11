@@ -2,8 +2,8 @@ cargo-features = ["edition"]
 
 [package]
 name = "passphrase"
-version = "1.0.0"
-authors = ["Kyle Clemens <git@kyleclemens.com>"]
+version = "1.0.1"
+authors = ["Kyle Clemens <passphrase@kyleclemens.com>"]
 
 build = "build.rs"
 
