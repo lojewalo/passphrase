@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate serde_derive;
 
+use xz2::write::XzEncoder;
+
 use std::{
   collections::HashMap,
   fs::{self, File},
@@ -16,19 +18,16 @@ const METADATA_JSON: &'static str = include_str!(concat!(
 // metadata format structs
 
 #[derive(Debug, Deserialize)]
-struct Metadata<'a> {
-  #[serde(borrow)]
-  lists: Vec<List<'a>>,
+struct Metadata {
+  lists: Vec<List>,
 }
 
 #[derive(Debug, Deserialize)]
-struct List<'a> {
-  #[serde(borrow)]
-  name: &'a str,
-  #[serde(borrow)]
-  short_names: Vec<&'a str>,
-  #[serde(borrow)]
-  file: &'a str,
+struct List {
+  name: String,
+  description: String,
+  short_names: Vec<String>,
+  file: String,
   rolls: u8,
 }
 
@@ -55,10 +54,11 @@ fn main() {
     let words = parse(&data);
 
     let l = list::WordList {
-      list: words,
       name: list.name,
+      description: list.description,
       short_names: list.short_names,
       rolls: list.rolls,
+      list: words,
     };
     lists.push(l);
   }
@@ -68,7 +68,7 @@ fn main() {
   let json_file = File::create(&json_path).unwrap();
 
   // write out the json
-  serde_json::to_writer(json_file, &lists).unwrap();
+  serde_json::to_writer(XzEncoder::new(json_file, 9), &lists).unwrap();
 }
 
 fn parse(content: &str) -> HashMap<u32, String> {

@@ -2,21 +2,38 @@
   "lists": [
     {
       "name": "EFF's Long Wordlist",
+      "description": "List of long words.",
       "short_names": ["long"],
       "file": "long-wordlist.txt",
       "rolls": 5
     },
     {
       "name": "EFF's Short Wordlist #1",
+      "description": "List of short words.",
       "short_names": ["short1"],
       "file": "short-wordlist-1.txt",
       "rolls": 4
     },
     {
       "name": "EFF's Short Wordlist #2",
+      "description": "Features longer words than short list #1 that may be more memorable.",
       "short_names": ["short2"],
       "file": "short-wordlist-2.txt",
       "rolls": 4
+    },
+    {
+      "name": "Diceware",
+      "description": "A list from http://world.std.com/~reinhold/diceware.html.",
+      "short_names": ["diceware"],
+      "file": "diceware.txt",
+      "rolls": 5
+    },
+    {
+      "name": "Beale",
+      "description": "An alternative to the Diceware list with fewer Americanisms and obscure words.",
+      "short_names": ["beale"],
+      "file": "beale.txt",
+      "rolls": 5
     }
   ]
 }

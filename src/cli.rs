@@ -2,10 +2,10 @@ use crate::list::model::WordList;
 
 use clap::{App, Arg, crate_name, crate_version, crate_authors};
 
-pub fn app(lists: &[WordList<'b>]) -> App<'a, 'b> {
+pub fn app(lists: &'b [WordList]) -> App<'a, 'b> {
   let names: Vec<&str> = lists.iter()
     .flat_map(|x| &x.short_names)
-    .map(|x| *x)
+    .map(|x| x.as_str())
     .collect();
 
   App::new(crate_name!())
