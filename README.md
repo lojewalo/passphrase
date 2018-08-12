@@ -7,7 +7,7 @@ Pretty much everything is customisable, but the default output looks like this:
 
 What else is there to say?
 
-    passphrase 0.1.0
+    passphrase 1.1.0
     Kyle Clemens <passphrase@kyleclemens.com>
     Generates passphrases using dice rolls on word lists a la https://www.eff.org/dice.
 
@@ -16,12 +16,13 @@ What else is there to say?
 
     FLAGS:
         -h, --help       print help information
+        -L, --lists      print available lists and their information then exit
         -v, --version    print version information
             --verbose    turn on verbose mode
 
     OPTIONS:
         -l, --list <list>              which list to pick words from [default: long]  [possible values: long, short1,
-                                      short2]
+                                    short2, diceware, beale]
         -n, --amount <passphrases>     how many passphrases to generate [default: 1]
         -s, --separator <separator>    which character (or characters) to separate the words in the passphrases [default: .]
         -w, --words <words>            how many words to use in the passphrase [default: 6]
